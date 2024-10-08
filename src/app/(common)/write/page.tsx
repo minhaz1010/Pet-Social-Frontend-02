@@ -11,13 +11,12 @@ import QuillEditor from './_components/QuillEditor';
 import { CldImage, CldUploadWidget } from 'next-cloudinary';
 import { useCreatePost } from '@/hooks/useCreatePost.hook';
 import Loading from '@/components/Shared/Loading';
+import { jetbrains } from '@/config/font';
 
 interface CloudinaryResult {
   public_id: string;
   secure_url: string;
 }
-
-
 
 export default function ResponsiveEditor() {
   const [postData, setPostData] = React.useState({
@@ -92,7 +91,7 @@ export default function ResponsiveEditor() {
   const isFormValid = postData.title.trim() && postData.content.trim() && imageData && !error;
 
   return (
-    <div className="min-h-screen w-full p-4 md:p-6 lg:p-8 relative">
+    <div className={`min-h-screen w-full p-4 md:p-6 lg:p-8 relative ${jetbrains.className}`}>
       <div className="max-w-4xl bg-white/5 backdrop-blur-md shadow-lg rounded-lg p-6 mx-auto">
         <h1 className="text-3xl font-bold text-white mb-6">Create a New Post</h1>
 
@@ -106,7 +105,7 @@ export default function ResponsiveEditor() {
           value={postData.title}
           onChange={(title) => setPostData({ ...postData, title })}
         />
-        <div className='flex justify-between'>
+        <div className='flex'>
           <PostTypeSelector
             postType={postData.postType}
             petType={postData.petType}
