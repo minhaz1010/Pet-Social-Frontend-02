@@ -1,3 +1,4 @@
+import Navbar from "@/components/Navbar"
 import { ReactNode } from "react"
 
 interface Props {
@@ -6,7 +7,8 @@ interface Props {
 const CommonLayout = ({ children }: Props) => {
   return (
     <div>
-      {children}
+      <Navbar />
+      <main>{children}</main>
     </div>
   )
 }
