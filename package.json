@@ -10,9 +10,12 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^5.7.1",
+    "@plaiceholder/next": "^3.0.0",
     "next": "14.2.14",
+    "plaiceholder": "^3.0.0",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "sharp": "^0.33.5"
   },
   "devDependencies": {
     "@types/node": "^20",
