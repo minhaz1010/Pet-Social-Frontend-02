@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Home, BookOpen, PenTool, User, LogIn, LogOut } from 'lucide-react';
 import { UserButton, useAuth } from '@clerk/nextjs';
 import petImage from "../../public/pet-dress.png"
 import Image from 'next/image';
@@ -12,10 +12,11 @@ interface NavLinkProps {
   href: string;
   children: React.ReactNode;
   className?: string;
+  icon: React.ReactNode;
   onClick?: () => void;
 }
 
-const NavLink: React.FC<NavLinkProps> = ({ href, children, className = '', onClick }) => {
+const NavLink: React.FC<NavLinkProps> = ({ href, children, className = '', icon, onClick }) => {
   const pathname = usePathname();
   const isActive = pathname === href;
 
@@ -23,9 +24,10 @@ const NavLink: React.FC<NavLinkProps> = ({ href, children, className = '', onCli
     <Link
       href={href}
       className={`${className} ${isActive ? 'text-blue-600' : 'text-gray-300'
-        } hover:text-blue-500 transition-all duration-300 relative group`}
+        } hover:text-blue-500 transition-all duration-300 relative group flex items-center`}
       onClick={onClick}
     >
+      <span className="mr-2">{icon}</span>
       {children}
       <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-500 group-hover:w-full transition-all duration-300" />
     </Link>
@@ -59,18 +61,21 @@ const Navbar: React.FC = () => {
           </div>
 
           <div className="hidden md:flex md:items-center md:space-x-8">
-            <NavLink href="/" className='text-xl transform hover:-translate-y-0.5 transition-transform duration-200'>
+            <NavLink href="/" className='text-xl transform hover:-translate-y-0.5 transition-transform duration-200' icon={<Home size={20} />}>
               Home
             </NavLink>
-            <NavLink href="/story" className='text-xl transform hover:-translate-y-0.5 transition-transform duration-200'>
+            <NavLink href="/story" className='text-xl transform hover:-translate-y-0.5 transition-transform duration-200' icon={<BookOpen size={20} />}>
               Story
             </NavLink>
-            <NavLink href="/tips" className='text-xl transform hover:-translate-y-0.5 transition-transform duration-200'>
+            <NavLink href="/tips" className='text-xl transform hover:-translate-y-0.5 transition-transform duration-200' icon={<BookOpen size={20} />}>
               Tips
+            </NavLink>
+            <NavLink href="/write" className='text-xl transform hover:-translate-y-0.5 transition-transform duration-200' icon={<PenTool size={20} />}>
+              Write
             </NavLink>
             {isSignedIn ? (
               <div className="flex items-center space-x-4">
-                <NavLink href="/profile" className='text-xl transform hover:-translate-y-0.5 transition-transform duration-200'>
+                <NavLink href="/profile" className='text-xl transform hover:-translate-y-0.5 transition-transform duration-200' icon={<User size={20} />}>
                   Profile
                 </NavLink>
                 <div className="transform hover:scale-110 transition-transform duration-200">
@@ -79,14 +84,15 @@ const Navbar: React.FC = () => {
               </div>
             ) : (
               <div className="flex items-center space-x-4">
-                <NavLink href="/sign-in" className='text-xl transform hover:-translate-y-0.5 transition-transform duration-200'>
-                  Sign In
-                </NavLink>
                 <NavLink
                   href="/sign-up"
                   className='text-xl transform hover:-translate-y-0.5 transition-transform duration-200'
+                  icon={<LogOut size={20} />}
                 >
                   Sign Up
+                </NavLink>
+                <NavLink href="/sign-in" className='text-xl transform hover:-translate-y-0.5 transition-transform duration-200' icon={<LogIn size={20} />}>
+                  Sign In
                 </NavLink>
               </div>
             )}
@@ -120,6 +126,7 @@ const Navbar: React.FC = () => {
           <NavLink
             href="/"
             className="block px-3 py-2 rounded-md text-xl font-medium transform hover:translate-x-2 transition-transform duration-200"
+            icon={<Home size={20} />}
             onClick={closeMenu}
           >
             Home
@@ -127,6 +134,7 @@ const Navbar: React.FC = () => {
           <NavLink
             href="/story"
             className="block px-3 py-2 rounded-md text-xl font-medium transform hover:translate-x-2 transition-transform duration-200"
+            icon={<BookOpen size={20} />}
             onClick={closeMenu}
           >
             Story
@@ -134,6 +142,7 @@ const Navbar: React.FC = () => {
           <NavLink
             href="/tips"
             className="block px-3 py-2 rounded-md text-xl font-medium transform hover:translate-x-2 transition-transform duration-200"
+            icon={<BookOpen size={20} />}
             onClick={closeMenu}
           >
             Tips
@@ -143,6 +152,7 @@ const Navbar: React.FC = () => {
               <NavLink
                 href="/profile"
                 className="block px-3 py-2 rounded-md text-xl font-medium transform hover:translate-x-2 transition-transform duration-200"
+                icon={<User size={20} />}
                 onClick={closeMenu}
               >
                 Profile
@@ -156,6 +166,7 @@ const Navbar: React.FC = () => {
               <NavLink
                 href="/sign-in"
                 className="block px-3 py-2 rounded-md text-xl font-medium transform hover:translate-x-2 transition-transform duration-200"
+                icon={<LogIn size={20} />}
                 onClick={closeMenu}
               >
                 Sign In
@@ -163,6 +174,7 @@ const Navbar: React.FC = () => {
               <NavLink
                 href="/sign-up"
                 className="block px-3 py-2 rounded-md text-xl font-medium transform hover:translate-x-2 transition-transform duration-200"
+                icon={<LogOut size={20} />}
                 onClick={closeMenu}
               >
                 Sign Up
