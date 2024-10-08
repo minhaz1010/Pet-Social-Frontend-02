@@ -22,7 +22,7 @@ const NavLink: React.FC<NavLinkProps> = ({ href, children, className = '', onCli
   return (
     <Link
       href={href}
-      className={`${className} ${isActive ? 'text-blue-600' : 'text-gray-600'
+      className={`${className} ${isActive ? 'text-blue-600' : 'text-gray-300'
         } hover:text-blue-500 transition-all duration-300 relative group`}
       onClick={onClick}
     >
@@ -40,7 +40,7 @@ const Navbar: React.FC = () => {
   const closeMenu = () => setIsOpen(false);
 
   return (
-    <nav className={`bg-[#E6F3FF] sticky top-0 z-50 ${protest_strike.className}`}>
+    <nav className={` sticky top-0 z-50 ${protest_strike.className}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
@@ -52,13 +52,12 @@ const Navbar: React.FC = () => {
                   className="size-10 rounded-full transform group-hover:scale-110 transition-transform duration-300"
                 />
               </div>
-              <span className="text-3xl text-gray-900 transform group-hover:scale-105 transition-transform duration-300">
+              <span className="text-3xl text-gray-200 transform group-hover:scale-105 transition-transform duration-300">
                 PetBook
               </span>
             </Link>
           </div>
 
-          {/* Desktop Navigation */}
           <div className="hidden md:flex md:items-center md:space-x-8">
             <NavLink href="/" className='text-xl transform hover:-translate-y-0.5 transition-transform duration-200'>
               Home
