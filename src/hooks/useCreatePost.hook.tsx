@@ -14,6 +14,7 @@ export const useCreatePost = () => {
       toast.success("Post Created Successfully");
     },
     onError: (error) => {
+      toast.error(error.message)
       console.log(error.message, 'error from hook');
     }
   });
