@@ -19,7 +19,14 @@ export interface ErrorMessage {
 export interface IAuthor {
   _id: string;
   userName: string;
+  userId:string;
+  email:string;
   imageURL: string;
+}
+
+export interface IImageOption {
+    public_id:string;
+    secure_url:string
 }
 
 export interface IPost {
@@ -27,7 +34,7 @@ export interface IPost {
   title: string;
   content: string;
   petType: string;
-  image: string[];
+  image: IImageOption[];
   postType: "TIP" | "STORY";
   author: IAuthor;
   isPremium: boolean;
