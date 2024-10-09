@@ -75,11 +75,12 @@ export default function ResponsiveEditor() {
   };
 
   const handleUploadSuccess = (result) => {
+    const newImage = {
+      secure_url: result.info.secure_url,
+      public_id: result.info.public_id
+    }
+    console.log(newImage, 'new image')
     setImageData((prevData) => {
-      const newImage = {
-        secure_url: result.info.secure_url,
-        public_id: result.info.public_id
-      }
       if (!prevData) return [newImage]
       return [...prevData, newImage]
     })
@@ -128,7 +129,8 @@ export default function ResponsiveEditor() {
           <div className="border-2 border-gray-300 rounded-lg p-4">
             <CldUploadWidget
               uploadPreset="gi3ax71p"
-              onUpload={(result) => handleUploadSuccess(result)}
+              // onUpload={(result) => handleUploadSuccess(result)}
+              onSuccess={(result) => handleUploadSuccess(result)}
               options={{
                 sources: ["local"]
               }}
